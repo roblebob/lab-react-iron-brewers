@@ -24,10 +24,20 @@ function AllBeersPage() {
       .catch((err) => console.log(err));
   }, []);
 
+  // Iteration 5: Implement the search functionality. The search bar should filter the beers by name. You can leave this as it is for now.
+  const search = (query) => {
+    axios
+      .get(API + "/search?q=" + query)
+      .then((response) => {
+        setBeers(response.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
   // The logic and the structure for the page showing the list of beers. You can leave this as it is for now.
   return (
     <>
-      <Search />
+      <Search onSearchSubmit={search} />
 
       <div className="d-inline-flex flex-wrap justify-content-center align-items-center w-100 p-4">
         {beers &&
